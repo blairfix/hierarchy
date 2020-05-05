@@ -7,7 +7,6 @@ using namespace std;
 // hierarchy returns a vector contain employment by hierarchical rank
 
 // [[Rcpp::depends(RcppArmadillo)]]
-// [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
 
 arma::vec hierarchy(const double &firm_size, const double &span_of_control){
