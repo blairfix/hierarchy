@@ -80,7 +80,12 @@ hierarchy(firm_size, span_of_control)
 [4,]    1
 ```
 
+### Installation
+To use `hierarchy`, install the following R packages:
+ * [Rcpp](https://cran.r-project.org/web/packages/Rcpp/index.html) 
+ * [RcppArmadillo](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) 
 
+Put the source code (`hierarchy.cpp`) in the directory of your R script. Then source it with the command `sourceCpp('hierarchy.cpp')`.
 
 
 
