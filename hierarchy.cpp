@@ -16,31 +16,42 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
     }
 
     // number of hierarchical levels in firm
-    double n_levels = floor( log(firm_size*(span_of_control-1)+1)/log(span_of_control) );
+    int n_levels = round( log(firm_size*(span_of_control-1)+1)/log(span_of_control) );
+
+    // get size of bottom rank
+    double base =  firm_size*( 1 - 1/span_of_control )/( 1 - std::pow(1/span_of_control, n_levels) ) ;
 
     // hierarchical employment vector
     // (leave exta elements at end of vector for possible overshoot
     int max_h = n_levels + 3;
     arma::vec h = arma::zeros<arma::vec>( max_h );
 
-    // get size of bottom rank
-    double base =  round( firm_size*( 1 - 1/span_of_control )/( 1 - std::pow(1/span_of_control, n_levels) ) );
+    // correct base to allow firm size of 1
+    h[0] = round( base );
+    if( h[0] < 1 ){ h[0] = 1 ;}
 
-    h[0] = base;
+    int i = 1;
+    int max_rank;
+    bool stop = false;
 
+    while( stop == false ){
 
-   // correct base to allow firm size of 1
-   if( h[0] < 1 ){ h[0] = 1 ;}
+        int level = round( base / std::pow(span_of_control, i) );
+        h[i] = level;
 
-   int i = 0;
-   while( h[i] != 0  & i < max_h  ){
+        if( level == 0){
+            max_rank = i;
+            stop = true;
+        }
+
+        if( i == max_h - 1){
+            max_rank = i + 1;
+            stop = true;
+        }
 
         i++;
-        h[i] =  floor( base / std::pow(span_of_control, i) );
 
-   }
-
-    int max_rank = i;
+    }
 
     // check for employment over/undershoot
     int check = arma::sum(h) - firm_size;
@@ -59,6 +70,5 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
     }
 
     return h.subvec(0, max_rank - 1);
-
 
 }
