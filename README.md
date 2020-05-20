@@ -30,13 +30,14 @@ span_of_control = 4
 hierarchy(firm_size, span_of_control)
 
      [,1]
-[1,] 7503
+     [,1]
+[1,] 7501
 [2,] 1875
-[3,]  468
+[3,]  469
 [4,]  117
 [5,]   29
 [6,]    7
-[7,]    1
+[7,]    2
 ```
 
 The span of control determines the 'shape' of the hierarchy. A small span of control will make a 'tall' hierarchy (meaning it has more hierarchical ranks):
@@ -44,23 +45,32 @@ The span of control determines the 'shape' of the hierarchy. A small span of con
 ```R
 # tall hierarchy
 firm_size = 10000
-span_of_control = 2
+span_of_control = 1.5
 hierarchy(firm_size, span_of_control)
 
-      [,1]
- [1,] 5005
- [2,] 2500
- [3,] 1250
- [4,]  625
- [5,]  312
- [6,]  156
- [7,]   78
- [8,]   39
- [9,]   19
-[10,]    9
-[11,]    4
-[12,]    2
-[13,]    1
+     [,1]
+ [1,] 3331
+ [2,] 2223
+ [3,] 1482
+ [4,]  988
+ [5,]  659
+ [6,]  439
+ [7,]  293
+ [8,]  195
+ [9,]  130
+[10,]   87
+[11,]   58
+[12,]   39
+[13,]   26
+[14,]   17
+[15,]   11
+[16,]    8
+[17,]    5
+[18,]    3
+[19,]    2
+[20,]    2
+[21,]    1
+[22,]    1
 
 ```
 
@@ -73,10 +83,10 @@ firm_size = 10000
 span_of_control = 20
 hierarchy(firm_size, span_of_control)
 
-    [,1]
-[1,] 9501
+     [,1]
+[1,] 9500
 [2,]  475
-[3,]   23
+[3,]   24
 [4,]    1
 ```
 

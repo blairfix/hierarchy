@@ -40,13 +40,15 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
         h[i] = level;
 
         if( level == 0){
+
             max_rank = i;
             stop = true;
-        }
 
-        if( i == max_h - 1){
+        } else if( i == max_h - 1){
+
             max_rank = i + 1;
             stop = true;
+
         }
 
         i++;
