@@ -16,7 +16,7 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
     }
 
     // number of hierarchical levels in firm
-    int n_levels = round( log(firm_size*(span_of_control-1)+1)/log(span_of_control) );
+    int n_levels = floor( log(firm_size*(span_of_control-1)+1)/log(span_of_control) );
 
     // get size of bottom rank
     double base =  firm_size*( 1 - 1/span_of_control )/( 1 - std::pow(1/span_of_control, n_levels) ) ;
@@ -27,7 +27,7 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
     arma::vec h = arma::zeros<arma::vec>( max_h );
 
     // correct base to allow firm size of 1
-    h[0] = round( base );
+    h[0] = floor( base );
     if( h[0] < 1 ){ h[0] = 1 ;}
 
     int i = 1;
@@ -36,7 +36,7 @@ arma::vec hierarchy(const double &firm_size, const double &span_of_control){
 
     while( stop == false ){
 
-        int level = round( base / std::pow(span_of_control, i) );
+        int level = floor( base / std::pow(span_of_control, i) );
         h[i] = level;
 
         if( level == 0){
